@@ -1,0 +1,125 @@
+ 
+  -> PHP File Handling
+  
+   -> PHP Manipulating Files :- 
+     -> PHP has several functions for creating, reading, uploading, and editing files.
+
+  -> PHP readfile() Function :- 
+    -> syntax :- 
+      readfile(filename, use_include_path, context);
+
+     -> e.g
+
+	    <?php
+			echo readfile("file_name.txt");
+		?>
+ 
+  -> PHP Open File - fopen()
+   -> E.g :- 
+     
+     <?php
+		$myfile = fopen("file_name.txt", "r") or die("Unable to open file!");
+		echo fread($myfile,filesize("file_name.txt"));
+		fclose($myfile);
+	 ?>
+ 
+
+  -> PHP Read File - fread() :- 
+     -> The fread() function reads from an open file.
+  
+	   -> syntax :- 
+	     fread($myfile,filesize("webdictionary.txt"));
+
+  -> PHP Close File - fclose() :- 
+	-> The fclose() function is used to close an open file. 
+   
+    -> syntax :- 
+		
+		<?php
+			$myfile = fopen("webdictionary.txt", "r");
+			// some code to be executed....
+			fclose($myfile);
+		?>
+
+
+  -> PHP Read Single Line - fgets() :- 
+      -> The fgets() function is used to read a single line from a file.
+
+  -> Eg. 
+	   <?php
+		$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+		echo fgets($myfile);
+		fclose($myfile);
+	   ?>
+
+
+  -> PHP Check End-Of-File - feof() :- 
+      -> The feof() function checks if the "end-of-file" (EOF) has been reached.
+
+  -> Eg. 
+	     <?php
+			$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+			// Output one line until end-of-file
+			while(!feof($myfile)) {
+			  echo fgets($myfile) . "<br>";
+			}
+			fclose($myfile);
+		?>
+
+
+ -> PHP Read Single Character - fgetc() :- 
+     -> The fgetc() function is used to read a single character from a file.
+
+  -> Eg. 
+  
+	    <?php
+			$myfile = fopen("webdictionary.txt", "r") or die("Unable to open file!");
+			// Output one character until end-of-file
+			while(!feof($myfile)) {
+			  echo fgetc($myfile);
+			}
+			fclose($myfile);
+		?>    		
+
+
+
+ -> PHP Create File - fopen() :- 
+    -> fopen() on a file that does not exist, it will create it, given that the file is opened for writing (w) or appending (a).
+
+	  -> Syntax :- 
+	     $myfile = fopen("testfile.txt", "w")
+
+ -> PHP Write to File - fwrite() :- 
+	 -> The fwrite() function is used to write to a file. 
+
+   ->E.g :- 
+	    <?php
+			$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+			$txt = "John Doe\n";
+			fwrite($myfile, $txt);
+			$txt = "Jane Doe\n";
+			fwrite($myfile, $txt);
+			fclose($myfile);
+		?>
+
+ -> PHP Overwriting :- 
+
+   -> <?php
+		$myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+		$txt = "Mickey Mouse\n";
+		fwrite($myfile, $txt);
+		$txt = "Minnie Mouse\n";
+		fwrite($myfile, $txt);
+		fclose($myfile);
+	 ?>
+
+  -> PHP Append Text :- 
+  
+	     <?php
+			$myfile = fopen("newfile.txt", "a") or die("Unable to open file!");
+			$txt = "Donald Duck\n";
+			fwrite($myfile, $txt);
+			$txt = "Goofy Goof\n";
+			fwrite($myfile, $txt);
+			fclose($myfile);
+		 ?>	 
