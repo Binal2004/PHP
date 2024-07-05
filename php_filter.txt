@@ -1,0 +1,320 @@
+
+
+-> filter_var() :-
+    ->  is a PHP function used for data filtering and validation
+
+    1. `FILTER_VALIDATE_EMAIL`: Validates if a value is a valid email address.
+    2. `FILTER_VALIDATE_IP`: Validates if a value is a valid IP address.
+    3. `FILTER_VALIDATE_URL`: Validates if a value is a valid URL.
+    4. `FILTER_VALIDATE_INT`: Validates if a value is a valid integer.
+    5. `FILTER_VALIDATE_FLOAT`: Validates if a value is a valid float.
+    6. `FILTER_VALIDATE_BOOLEAN`: Validates if a value is a valid boolean (true/false).
+    7. `FILTER_VALIDATE_REGEXP`: Validates if a value matches a given regular expression.
+    8. `FILTER_SANITIZE_STRING`: Removes or encodes tags and special characters from a string.
+    9. `FILTER_SANITIZE_EMAIL`: Removes or encodes characters that are not valid in an email address.
+    10. `FILTER_SANITIZE_URL`: Removes or encodes characters that are not valid in a URL.
+    11. `FILTER_SANITIZE_NUMBER_INT`: Removes all characters except digits, plus and minus signs.
+    12. `FILTER_SANITIZE_NUMBER_FLOAT`: Removes all characters except digits, plus and minus signs, and decimal point.
+    13. `FILTER_SANITIZE_SPECIAL_CHARS`: Encodes special characters in a string.
+    14. `FILTER_SANITIZE_FULL_SPECIAL_CHARS`: Encodes special characters, including double quotes and ampersands.
+    15. `FILTER_SANITIZE_ENCODED`: URL-encodes a string.
+    16. `FILTER_SANITIZE_MAGIC_QUOTES`: Apply addslashes() function to a string.
+
+
+ -> 1. Validating an email address:
+
+        $email = 'test@example.com';
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "Email is valid.";
+        } else {
+            echo "Email is invalid.";
+        }
+
+
+ -> 2. Validating an IP address:
+
+        $ip = '192.168.0.1';
+        if (filter_var($ip, FILTER_VALIDATE_IP)) {
+            echo "IP address is valid.";
+        } else {
+            echo "IP address is invalid.";
+        }
+
+
+ -> 3. Sanitizing and validating a URL:
+
+        $url = 'http://example.com';
+        $sanitizedUrl = filter_var($url, FILTER_SANITIZE_URL);
+        if (filter_var($sanitizedUrl, FILTER_VALIDATE_URL)) {
+            echo "URL is valid.";
+        } else {
+            echo "URL is invalid.";
+        }
+
+
+ -> 4. Validating an integer:
+
+        $number = 42;
+        if (filter_var($number, FILTER_VALIDATE_INT)) {
+            echo "Number is valid.";
+        } else {
+            echo "Number is invalid.";
+        }
+
+
+ -> 5. Sanitizing and validating a floating-point number:
+
+        $number = '3.14';
+        $sanitizedNumber = filter_var($number, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+        if (filter_var($sanitizedNumber, FILTER_VALIDATE_FLOAT)) {
+            echo "Number is valid.";
+        } else {
+            echo "Number is invalid.";
+        }
+
+
+ -> 6. Validating a boolean value:
+
+        $flag = true;
+        if (filter_var($flag, FILTER_VALIDATE_BOOLEAN)) {
+            echo "Flag is valid.";
+        } else {
+            echo "Flag is invalid.";
+        }
+
+
+ -> 7. Validating a date string:
+
+        $date = '2023-06-16';
+        if (filter_var($date, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^\d{4}-\d{2}-\d{2}$/")))) {
+            echo "Date is valid.";
+        } else {
+            echo "Date is invalid.";
+        }
+
+
+ -> 8. Validating and sanitizing HTML input:
+
+        $html = '<script>alert("Hello");</script>';
+        $sanitizedHtml = filter_var($html, FILTER_SANITIZE_STRING, FILTER_FLAG_STRIP_TAGS);
+
+
+ -> 9. Validating and sanitizing an input as an email:
+
+        $input = 'example@';
+        $sanitizedInput = filter_var($input, FILTER_SANITIZE_EMAIL);
+        if (filter_var($sanitizedInput, FILTER_VALIDATE_EMAIL)) {
+            echo "Input is a valid email.";
+        } else {
+            echo "Input is not a valid email.";
+        }
+
+
+ -> 10. Validating a domain name:
+
+        $domain = 'example.com';
+        if (filter_var($domain, FILTER_VALIDATE_DOMAIN)) {
+            echo "Domain is valid.";
+        } else {
+            echo "Domain is invalid.";
+        }
+
+
+          ------------------------- Form Validation --------------------
+
+<?php
+// Initialize variables
+$name = $email = $password = $confirmPassword = $message = '';
+$nameError = $emailError = $passwordError = $confirmPasswordError = '';
+
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Validate name field
+    if (empty($_POST['name'])) {
+        $nameError = 'Name is required.';
+    } else {
+        $name = test_input($_POST['name']);
+        // Additional validation rules can be applied here
+    }
+
+    // Validate email field
+    if (empty($_POST['email'])) {
+        $emailError = 'Email is required.';
+    } elseif (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+        $emailError = 'Invalid email format.';
+    } else {
+        $email = test_input($_POST['email']);
+    }
+
+    // Validate password field
+    if (empty($_POST['password'])) {
+        $passwordError = 'Password is required.';
+    } else {
+        $password = test_input($_POST['password']);
+        // Additional validation rules can be applied here
+    }
+
+    // Validate confirm password field
+    if (empty($_POST['confirmPassword'])) {
+        $confirmPasswordError = 'Confirm password is required.';
+    } elseif ($_POST['confirmPassword'] !== $_POST['password']) {
+        $confirmPasswordError = 'Passwords do not match.';
+    } else {
+        $confirmPassword = test_input($_POST['confirmPassword']);
+    }
+
+    // Validate message field
+    if (empty($_POST['message'])) {
+        $messageError = 'Message is required.';
+    } else {
+        $message = test_input($_POST['message']);
+        // Additional validation rules can be applied here
+    }
+
+    // If there are no validation errors, proceed with further processing
+    if (empty($nameError) && empty($emailError) && empty($passwordError) && empty($confirmPasswordError) && empty($messageError)) {
+        // Process the form data or store it in a database
+        // ...
+        // Redirect to a success page or display a success message
+        // ...
+        // Clear the form fields
+        $name = $email = $password = $confirmPassword = $message = '';
+    }
+}
+
+// Helper function to sanitize user input
+function test_input($data) {
+    $data = trim($data); // Remove leading/trailing white spaces
+    $data = stripslashes($data); // Remove backslashes
+    $data = htmlspecialchars($data); // Convert special characters to HTML entities
+    return $data;
+}
+?>
+
+<!-- HTML form -->
+<form method="POST" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">
+    <label for="name">Name:</label>
+    <input type="text" name="name" value="<?php echo $name; ?>">
+    <span class="error"><?php echo $nameError; ?></span>
+
+    <label for="email">Email:</label>
+    <input type="text" name="email" value="<?php echo $email; ?>">
+    <span class="error"><?php echo $emailError; ?></span>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password">
+    <span class="error"><?php echo $passwordError; ?></span>
+
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" name="confirm
+
+Password">
+    <span class="error"><?php echo $confirmPasswordError; ?></span>
+
+    <label for="message">Message:</label>
+    <textarea name="message"><?php echo $message; ?></textarea>
+    <span class="error"><?php echo $messageError; ?></span>
+
+    <input type="submit" value="Submit">
+</form>
+
+
+    -------------------------- Trim Function ------------------------------
+
+
+ -> `trim()` function is used to remove leading and trailing white spaces (or other specified characters) from a string. 
+
+ -> 1. Basic usage:
+
+        $text = "   Hello, World!   ";
+        $trimmedText = trim($text);
+        echo $trimmedText; // Output: "Hello, World!"
+
+
+ -> 2. Removing specific characters:
+
+        $text = "---Hello, World!---";
+        $trimmedText = trim($text, '-');
+        echo $trimmedText; // Output: "Hello, World!"
+
+
+ -> 3. Trimming leading and trailing white spaces, tabs, and newlines:
+
+            $text = "\t   Hello, World!  \n";
+            $trimmedText = trim($text);
+            echo $trimmedText; // Output: "Hello, World!"
+
+
+ -> 4. Trimming null bytes and vertical tabs:
+
+        $text = "\x0BHello, World!\0";
+        $trimmedText = trim($text);
+        echo $trimmedText; // Output: "Hello, World!"
+
+
+ -> 5. Trimming only leading white spaces:
+
+        $text = "   Hello, World!";
+        $trimmedText = ltrim($text);
+        echo $trimmedText; // Output: "Hello, World!"
+
+
+ -> 6. Trimming only trailing white spaces:
+
+        $text = "Hello, World!   ";
+        $trimmedText = rtrim($text);
+        echo $trimmedText; // Output: "Hello, World!"
+
+    --------------------- stripslashes Function ------------------------
+
+
+
+ -> `stripslashes()` function is used to remove backslashes (`\`) from a string.
+
+
+ -> 1. Removing backslashes from a string:
+
+        $text = 'This is an example with \'backslashes\'.';
+        $unescapedText = stripslashes($text);
+        echo $unescapedText; // Output: "This is an example with 'backslashes'."
+
+
+ -> 2. Handling escaped data from a database:
+
+        $data = "This is some text \\ with escaped backslashes.";
+        $unescapedData = stripslashes($data);
+        echo $unescapedData; // Output: "This is some text \ with escaped backslashes."
+
+
+ -> 3. Dealing with form input that has been escaped:
+
+        $input = "John O\\'Connor";
+        $unescapedInput = stripslashes($input);
+        echo $unescapedInput; // Output: "John O'Connor"
+
+
+   --------------------- htmlspecialchars Function ------------------------
+ 
+
+  -> `htmlspecialchars()` function is used to convert special characters to their corresponding HTML entities. 
+
+ -> 1. Converting special characters to HTML entities:
+
+        $text = '<h1>Hello, World!</h1>';
+        $encodedText = htmlspecialchars($text);
+        echo $encodedText; // Output: "&lt;h1&gt;Hello, World!&lt;/h1&gt;"
+
+
+ -> 2. Handling user input to prevent XSS attacks:
+
+        $userInput = '<script>alert("Hello");</script>';
+        $sanitizedInput = htmlspecialchars($userInput);
+        echo $sanitizedInput; // Output: "&lt;script&gt;alert(&quot;Hello&quot;);&lt;/script&gt;"
+
+
+ -> 3. Specifying additional conversion options:
+
+        $text = 'He said, "I\'m fine."';
+        $encodedText = htmlspecialchars($text, ENT_QUOTES | ENT_HTML5);
+        echo $encodedText; // Output: "He said, &quot;I'm fine.&quot;"
+
