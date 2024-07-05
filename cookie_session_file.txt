@@ -1,0 +1,84 @@
+   
+ -> $_COOKIE :-
+
+      Step1 :- To set cookie                    
+                                              www.abc.com
+                                                   |
+         -> setcookie(name, value, expire, path, domain, secure, httponly);
+                                             |              |        |
+                                           /some path   True|False --+
+
+     Step2 :- View Cookie Value :- 
+
+           -> $_COOKIE[name] <- it print the value
+
+  -> Eg.
+
+        <?php
+        // Set the cookie with the user's username
+        $username = "john_doe";
+        setcookie("username", $username, time() + (86400 * 30), "/"); // Cookie expires in 30 days
+
+        // Access the cookie using $_COOKIE
+        if (isset($_COOKIE["username"])) {
+            $username = $_COOKIE["username"];
+            echo "Welcome back, " . $username . "!";
+        } else {
+            echo "Welcome, guest!";
+        }
+        ?>
+
+
+
+
+ -> $_SESSION :- 
+
+               ->        ->  
+        user   |  server |   set info
+               <-        <-
+ 
+
+ -> Set the session :- 
+
+    Step1 :- 
+          -> session_start();
+
+    Step2 :- 
+         -> $_SESSION[name] = value ;  <- here set session name & value 
+
+    Step2 :- 
+         -> echo $_SESSION[name]; <- it gives the value 
+
+ -> Delete & Remove the session :-
+
+     Step1 :- 
+        -> session_uset(); <- it removes all session variable's
+
+     step2 :- 
+        -> session_destroy(); <- delete & destroy the session  
+
+
+
+  -> Eg.
+
+        <?php
+        // Start the session
+        session_start();
+
+        // Set a value in the session
+        $_SESSION["username"] = "john_doe";
+
+        // Access the session value
+        if (isset($_SESSION["username"])) {
+            $username = $_SESSION["username"];
+            echo "Welcome back, " . $username . "!";
+        } else {
+            echo "Welcome, guest!";
+        }
+
+        // Remove a session value
+        unset($_SESSION["username"]);
+
+        // Destroy the session
+        session_destroy();
+        ?>
