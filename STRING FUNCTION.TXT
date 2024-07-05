@@ -1,0 +1,96 @@
+
+ -> String Function 
+
+1. strlen(): Returns the length of a string.
+2. strtoupper(): Converts a string to uppercase.
+3. strtolower(): Converts a string to lowercase.
+4. str_replace(): Replaces all occurrences of a substring with another substring.
+5. substr(): Returns a substring from a string.
+6. strpos(): Returns the position of the first occurrence of a substring in a string.
+7. trim(): Removes whitespace or specified characters from the beginning and end of a string.
+8. str_split(): Converts a string into an array of characters.
+9. implode(): Joins array elements into a string using a specified separator.
+10. ucfirst(): Converts the first character of a string to uppercase.
+11. ucwords(): Converts the first character of each word in a string to uppercase.
+12. strcmp(): Compares two strings.
+13. strstr(): Finds the first occurrence of a substring in a string.
+14. explode(): Splits a string into an array based on a delimiter.
+15. str_repeat(): Repeats a string a specified number of times.
+16. str_pad(): Pads a string with another string to a specified length.
+19. str_shuffle(): Randomly shuffles the characters of a string.
+20. strrev(): Reverses a string.
+
+
+1. strlen(): Returns the length of a string.
+
+$str = "Hello, world!";
+$length = strlen($str);
+echo $length; // Output: 13
+
+
+2. strtoupper(): Converts a string to uppercase.
+
+$str = "hello, world!";
+$upper = strtoupper($str);
+echo $upper; // Output: HELLO, WORLD!
+
+
+3. strtolower(): Converts a string to lowercase.
+
+$str = "HELLO, WORLD!";
+$lower = strtolower($str);
+echo $lower; // Output: hello, world!
+
+
+4. str_replace(): Replaces all occurrences of a substring with another substring.
+
+$str = "Hello, world!";
+$newStr = str_replace("world", "PHP", $str);
+echo $newStr; // Output: Hello, PHP!
+
+
+5. substr(): Returns a substring from a string.
+
+$str = "Hello, world!";
+$substring = substr($str, 7, 5);
+echo $substring; // Output: world
+
+
+6. strpos(): Returns the position of the first occurrence of a substring in a string.
+
+$str = "Hello, world!";
+$position = strpos($str, "world");
+echo $position; // Output: 7
+
+
+7. trim(): Removes whitespace or specified characters from the beginning and end of a string.
+
+$str = "   Hello, world!   ";
+$trimmed = trim($str);
+echo $trimmed; // Output: Hello, world!
+
+
+8. str_split(): Converts a string into an array of characters.
+
+$str = "Hello";
+$chars = str_split($str);
+print_r($chars); // Output: Array ( [0] => H [1] => e [2] => l [3] => l [4] => o )
+
+
+9. implode(): Joins array elements into a string using a specified separator.
+
+$colors = array("red", "green", "blue");
+$str = implode(", ", $colors);
+echo $str; // Output: red, green, blue
+
+
+10. ucfirst(): Converts the first character of a string to uppercase.
+
+$str = "hello, world!";
+$firstCharUppercase = ucfirst($str);
+echo $firstCharUppercase; // Output: Hello, world!
+
+
+$str = "Hello world. It's a beautiful day.";
+print_r (explode(" ",$str));
+ -> Array ( [0] => Hello [1] => world. [2] => It's [3] => a [4] => beautiful [5] => day. )
