@@ -1,0 +1,89 @@
+<?php 
+
+/*
+  $file = 'demo.txt';
+
+
+  if(file_exists($file)){
+     
+	      // readfile($file);
+	      // copy($file , "newfile.txt");
+	  	   // rename('newfile.txt','new_name.txt');
+	  	   // unlink('newfile.txt'); # it delete the file from server
+	  	   // delete('newfile.txt'); # it delete the file from server
+	  	   // mkdir('testing_fold');  # its create's new folder in your choosien path 
+
+
+	}else{
+	 
+	    echo "file does not exists";
+
+	}
+
+
+	 $folder = 'testing_fold';
+
+	 if(!file_exists($folder)){
+        
+        mkdir('newfolder');
+	 }else{
+	 	echo "this folder exists";
+	 }
+
+*/
+
+/*
+	# TO remove folder first to check thet folder exist or not 
+
+	 $folder = 'testing_fold';
+
+	 if(file_exists($folder)){
+        
+        rmdir($folder); # rmdir removes that folder
+
+	 }else{
+	 	echo "this folder exists";
+	 }
+
+
+*/
+
+/*
+
+
+   # TO know file size -> filesize('file_name')
+
+	 $file = 'demo.txt';
+	 echo filesize($file);
+
+   # to know file type file | dir(folder)
+
+	 $folder = 'newfolder';
+	 echo filetype($folder)." ".filetype('demo.txt');
+
+   # To know the full path of your file and folder
+	 $file = 'demo.txt' ;
+	 $folder = 'newfolder';
+
+	 echo realpath($file)."  ".realpath($folder);
+
+   # to know folder information -> pathinfo(file_name | folder_name | path);
+	 
+	 $path = realpath($file);
+
+     echo "<pre>";
+	   print_r( pathinfo($path));
+     echo "</pre>";
+
+     echo pathinfo($path,PATHINFO_DIRNAME);
+     echo pathinfo($path,PATHINFO_BASENAME);
+     echo pathinfo($path,PATHINFO_EXTENSION);
+     echo pathinfo($path,PATHINFO_FILENAME);
+
+
+  # To get parent file diractory -> diename(file_name,level)
+     echo dirname($path,2);
+
+
+*/
+ ?>
