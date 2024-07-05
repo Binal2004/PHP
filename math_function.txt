@@ -1,0 +1,110 @@
+ -> Math Function :- 
+ 
+1. abs(): Returns the absolute value of a number.
+2. acos(): Returns the arc cosine of a number in radians.
+3. acosh(): Returns the inverse hyperbolic cosine of a number.
+4. asin(): Returns the arc sine of a number in radians.
+5. asinh(): Returns the inverse hyperbolic sine of a number.
+6. atan(): Returns the arc tangent of a number in radians.
+7. atan2(): Returns the arc tangent of two variables.
+8. atanh(): Returns the inverse hyperbolic tangent of a number.
+9. base_convert(): Converts a number from one base to another.
+10. bindec(): Converts a binary number to a decimal number.
+11. ceil(): Rounds a number up to the nearest integer.
+12. cos(): Returns the cosine of a number in radians.
+13. cosh(): Returns the hyperbolic cosine of a number.
+14. decbin(): Converts a decimal number to a binary number.
+15. dechex(): Converts a decimal number to a hexadecimal number.
+16. decoct(): Converts a decimal number to an octal number.
+17. deg2rad(): Converts a degree value to radians.
+18. exp(): Calculates the exponential value of a number.
+19. expm1(): Returns exp(number) - 1.
+20. floor(): Rounds a number down to the nearest integer.
+21. fmod(): Returns the remainder of a division operation.
+22. hexdec(): Converts a hexadecimal number to a decimal number.
+23. hypot(): Calculates the length of the hypotenuse of a right-angle triangle.
+24. log(): Returns the natural logarithm of a number.
+25. log10(): Returns the base-10 logarithm of a number.
+26. log1p(): Returns log(1 + number).
+27. max(): Returns the highest value in an array or a list of arguments.
+28. min(): Returns the lowest value in an array or a list of arguments.
+29. octdec(): Converts an octal number to a decimal number.
+30. pi(): Returns the value of pi (π).
+31. pow(): Returns the value of a number raised to a power.
+32. rad2deg(): Converts a radian value to degrees.
+33. rand(): Generates a random integer.
+34. round(): Rounds a number to a specified precision.
+35. sin(): Returns the sine of a number in radians.
+36. sinh(): Returns the hyperbolic sine of a number.
+37. sqrt(): Returns the square root of a number.
+38. tan(): Returns the tangent of a number in radians.
+39. tanh(): Returns the hyperbolic tangent of a number.
+
+
+1. abs(): Returns the absolute value of a number.
+
+$number = -5.4;
+$absoluteValue = abs($number);
+echo $absoluteValue; // Output: 5.4
+
+
+2. round(): Rounds a number to the nearest integer.
+
+$number = 3.7;
+$rounded = round($number);
+echo $rounded; // Output: 4
+
+
+3. floor(): Rounds a number down to the nearest integer.
+
+$number = 3.7;
+$roundedDown = floor($number);
+echo $roundedDown; // Output: 3
+
+
+4. ceil(): Rounds a number up to the nearest integer.
+
+$number = 3.2;
+$roundedUp = ceil($number);
+echo $roundedUp; // Output: 4
+
+
+5. sqrt(): Calculates the square root of a number.
+
+$number = 16;
+$squareRoot = sqrt($number);
+echo $squareRoot; // Output: 4
+
+
+6. pow(): Raises a number to a specified power.
+
+$base = 2;
+$exponent = 3;
+$result = pow($base, $exponent);
+echo $result; // Output: 8
+
+
+7. min(): Returns the lowest value from a list of numbers.
+
+$numbers = [4, 2, 6, 1, 9];
+$lowest = min($numbers);
+echo $lowest; // Output: 1
+
+
+8. max(): Returns the highest value from a list of numbers.
+
+$numbers = [4, 2, 6, 1, 9];
+$highest = max($numbers);
+echo $highest; // Output: 9
+
+
+9. rand(): Generates a random integer between a minimum and maximum value.
+
+$randomNumber = rand(1, 10);
+echo $randomNumber; // Output: Random number between 1 and 10
+
+
+10. pi(): Returns the value of Pi (π).
+
+$piValue = pi();
+echo $piValue; // Output: 3.1415926535898
