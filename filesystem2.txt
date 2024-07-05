@@ -1,0 +1,135 @@
+
+
+<!-- 
+
+   -> fopen() :- 
+       -> it open the file with there mode 
+        -> syntax :- 
+            fopen('file_name','mode');
+
+   -> fread() :- 
+       -> it only read the file with by giving lenth of charecter 
+        -> syntax :- 
+           fread('file_name',char_length); 
+
+   -> fgets() :- 
+        -> this function only read single line of that page and cursoir shift to next line
+           -> syntax :- 
+              fgets(open_file_add) <- first_line
+              fgets(open_file_add) <- second_line
+              ..ect
+
+   -> ftell() :- 
+        -> this function return cursior position 
+         -> syntax :- 
+            ftell(open_file_add);
+
+   -> fseek() :- 
+        -> this function changes the cursoir position by giving own position
+         -> syntax :-
+           fseek(open_file_add,char_position);
+
+   -> fpassthru() :- 
+        -> this function gives the current cursoir postion to end of page charecter values(length)
+         -> syntax :- 
+            fpassthru(open_file_add);
+
+   -> rewind() :- 
+        -> this function is to similer as fgets() function but it gose
+           backword line 
+          -> syntax :- 
+            rewind(open_file_add); 
+   -> feof() :- 
+        -> it is file end of file function it start form top and end bottom of page
+          mainly we use this function with while loop 
+           -> synax :- 
+
+                while(!feof(open_file_add)){
+	               $line = fgets(open_file_add);
+	               echo $line;
+                }
+
+   -> fgetc() :- 
+         -> same as fgets() function but it read  charecter one by one 
+   -> file() :- 
+         -> this function is to convert every line into array 
+              it does't wnat any address or open function
+          -> syntax :- 
+            file(file_name) 
+
+   -> fwrite() :- 
+   -> fput() :- 
+   -> fclose() :-
+   -> ftruncate() :- 
+
+
+
+ -->
+
+<?php 
+
+
+ # fopne() :- 
+
+      $file = fopen('demo.txt', 'r');
+
+/*
+      # if you want to read all data from that file use filsesize() function with fread() funtcion
+
+
+      echo fread($file,100);
+      echo fread($file,filesize('demo.txt'));
+	
+*/
+
+/*      
+      # read single line :- 
+
+      echo fgets($file);
+      echo ftell($file);
+
+      # to show currrent cursoir position -> ftell(open_file_add)
+      echo fgets($file);
+      echo ftell($file);
+
+      # to change cursoir -> fseek() 
+      fseek($file, 20);
+      echo fgets($file);
+
+      # this backword line cousoir
+      rewind($file);
+
+      # to show current cursoir to end of page charecter len..
+      echo fpassthru($file);
+
+
+*/
+
+/*
+      # end of file with fgets() -> feof()
+
+        while(!feof($file)){
+           $line = fgets($file);
+           echo $line;
+        }
+      
+
+      # end of file with fgetc() -> feof()
+
+		while(!feof($file)){
+           $line = fgetc($file);
+           echo $line;
+        }
+		 
+*/
+
+        # convert every line into array :- 
+
+
+         $arr = file('demo.txt');
+          echo "<pre>";
+            print_r($arr);
+          echo "</pre>";
+
+
+ ?>
